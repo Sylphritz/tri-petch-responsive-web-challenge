@@ -6,7 +6,7 @@
     class="relative"
   >
     <div
-      class="sm:absolute container sm:h-full top-0 sm:left-1/2 sm:-translate-x-1/2 mt-[11px] sm:mt-0 mb-[-55px] sm:mb-0 pointer-events-none text-center"
+      class="sm:absolute relative container sm:h-full top-0 sm:left-1/2 sm:-translate-x-1/2 mt-[11px] sm:mt-0 mb-[-55px] sm:mb-0 pointer-events-none text-center z-10"
     >
       <div class="sm:absolute top-0 left-0 xl:left-[-64px] 2xl:left-0">
         <img
@@ -23,44 +23,35 @@
         />
       </div>
     </div>
-    <SectionItem
-      number="01"
-      title="Connection"
-      class="sm:pt-[36px] sm:pb-[30px] xl:pt-[59px] xl:pb-[56px]"
-      inner-class="sm:w-[58%] xl:w-[717px]"
-      align-right
-    >
-      Connect with coaches directly, you can ping coaches to view profile.
-    </SectionItem>
-    <SectionItem
-      number="02"
-      title="Collaboration"
-      class="bg-[#F5F4F9] xl:h-[256px]"
-      inner-class="sm:w-[58%] xl:w-[717px]"
-      align-right
-    >
-      Work with other student athletes to increase visability. When you share
-      and like other players videos it will increase your visability as a
-      player. This is the team work aspect to Surface 1.
-    </SectionItem>
-    <SectionItem
-      number="03"
-      title="Growth"
-      dark-mode
-      class="bg-[#5E3DB3] xl:h-[297px] sm:pb-[58px]"
-      inner-class="sm:w-[58%] xl:w-[717px]"
-      align-right
-    >
-      Resources and tools for you to get better as a student Athelte. Access to
-      training classes, tutor sessions, etc.
-    </SectionItem>
+    <div class="relative hidden sm:block">
+      <AthletsConnection />
+      <AthletsCollaboration />
+      <AthletsGrowth />
+    </div>
+    <div class="relative block sm:hidden">
+      <Flicking
+        :options="{
+          align: 'prev',
+          panelsPerView: 1,
+        }"
+        :plugins="flickingPlugins"
+        ref="flickingAthlets"
+      >
+        <AthletsConnection />
+        <AthletsCollaboration />
+        <AthletsGrowth />
+        <template #viewport>
+          <div class="flicking-pagination"></div>
+        </template>
+      </Flicking>
+    </div>
   </Section>
   <Section
     title="Players"
     class="relative pt-[19px] sm:pt-[52px] xl:pt-[124px]"
   >
     <div
-      class="overflow-hidden xl:overflow-visible sm:absolute container sm:h-full top-0 sm:left-1/2 sm:-translate-x-1/2 mt-[22px] sm:mt-0 mb-[-35px] sm:mb-0 pointer-events-none text-center"
+      class="overflow-hidden xl:overflow-visible relative sm:absolute container sm:h-full top-0 sm:left-1/2 sm:-translate-x-1/2 mt-[22px] sm:mt-0 mb-[-35px] sm:mb-0 pointer-events-none text-center z-10"
     >
       <div
         class="sm:absolute top-0 right-0 sm:right-[-254px] xl:right-[-64px] 2xl:right-0"
@@ -73,34 +64,36 @@
         />
       </div>
     </div>
-    <SectionItem
-      number="01"
-      title="Connection"
-      class="sm:pt-[34px] sm:pb-[10px] xl:pt-[68px] xl:pb-[69px]"
-      inner-class="sm:w-[56.25%] xl:w-[717px] xl:ml-px"
-    >
-      Connect with talented athlete directly, you can watch their skills through
-      video showreels directly from Surface 1.
-    </SectionItem>
-    <SectionItem
-      number="02"
-      title="Collaboration"
-      class="bg-[#F5F4F9] sm:pt-[51px] sm:pb-[65px] xl:pt-[52px] xl:pb-[102px]"
-      inner-class="sm:w-[56.25%] xl:w-[717px] xl:ml-px"
-    >
-      Work with recruiter to increase your chances of findingtalented athlete.
-    </SectionItem>
-    <SectionItem
-      number="03"
-      numberColor="text-[#8765DD]"
-      title="Growth"
-      dark-mode
-      class="bg-[#090C35] sm:pt-[44px] sm:pb-[72px] xl:pt-[87px] xl:pb-[62px]"
-      inner-class="sm:w-[56.25%] xl:w-[717px] xl:ml-px"
-    >
-      Save your time, recruit proper athlets for your team.
-    </SectionItem>
+    <div class="relative hidden sm:block">
+      <PlayersConnection />
+      <PlayersCollaboration />
+      <PlayersGrowth />
+    </div>
+    <div class="relative block sm:hidden">
+      <Flicking
+        :options="{
+          align: 'prev',
+          panelsPerView: 1,
+        }"
+        :plugins="flickingPlugins"
+      >
+        <PlayersConnection />
+        <PlayersCollaboration />
+        <PlayersGrowth />
+        <template #viewport>
+          <div class="flicking-pagination"></div>
+        </template>
+      </Flicking>
+    </div>
   </Section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import '@egjs/vue3-flicking/dist/flicking.css'
+
+import Flicking from '@egjs/vue3-flicking'
+// @ts-ignore
+import { Pagination } from '@egjs/flicking-plugins'
+
+const flickingPlugins = [new Pagination({ type: 'bullet' })]
+</script>

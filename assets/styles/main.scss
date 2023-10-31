@@ -9,3 +9,19 @@
     font-family: Roboto, sans-serif;
   }
 }
+
+// Bullet Pagination
+.flicking-pagination {
+  @apply absolute bottom-[30px] w-full flex flex-row justify-center gap-[12px] z-10;
+
+  .flicking-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #D8D8D8;
+    border-radius: 999999px;
+
+    &.flicking-pagination-bullet-active {
+      background-color: #603EBE;
+    }
+  }
+}
