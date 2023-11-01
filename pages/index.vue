@@ -29,21 +29,21 @@
       <AthletsGrowth />
     </div>
     <div class="relative block sm:hidden">
-      <Flicking
-        :options="{
-          align: 'prev',
-          panelsPerView: 1,
-        }"
-        :plugins="flickingPlugins"
-        ref="flickingAthlets"
-      >
-        <AthletsConnection />
-        <AthletsCollaboration />
-        <AthletsGrowth />
-        <template #viewport>
-          <div class="flicking-pagination"></div>
+      <SliderCarousel :items-to-show="1" :items-to-scroll="1">
+        <SliderSlide key="athletsConnection">
+          <AthletsConnection />
+        </SliderSlide>
+        <SliderSlide key="athletsCollaboration">
+          <AthletsCollaboration />
+        </SliderSlide>
+        <SliderSlide key="athletsGrowth">
+          <AthletsGrowth />
+        </SliderSlide>
+
+        <template #addons>
+          <SliderPagination />
         </template>
-      </Flicking>
+      </SliderCarousel>
     </div>
   </Section>
   <Section
@@ -70,30 +70,23 @@
       <PlayersGrowth />
     </div>
     <div class="relative block sm:hidden">
-      <Flicking
-        :options="{
-          align: 'prev',
-          panelsPerView: 1,
-        }"
-        :plugins="flickingPlugins"
-      >
-        <PlayersConnection />
-        <PlayersCollaboration />
-        <PlayersGrowth />
-        <template #viewport>
-          <div class="flicking-pagination"></div>
+      <SliderCarousel :items-to-show="1" :items-to-scroll="1">
+        <SliderSlide key="playerConnection">
+          <PlayersConnection />
+        </SliderSlide>
+        <SliderSlide key="playerCollaboration">
+          <PlayersCollaboration />
+        </SliderSlide>
+        <SliderSlide key="playerGrowth">
+          <PlayersGrowth />
+        </SliderSlide>
+
+        <template #addons>
+          <SliderPagination />
         </template>
-      </Flicking>
+      </SliderCarousel>
     </div>
   </Section>
 </template>
 
-<script lang="ts" setup>
-import '@egjs/vue3-flicking/dist/flicking.css'
-
-import Flicking from '@egjs/vue3-flicking'
-// @ts-ignore
-import { Pagination } from '@egjs/flicking-plugins'
-
-const flickingPlugins = [new Pagination({ type: 'bullet' })]
-</script>
+<script lang="ts" setup></script>

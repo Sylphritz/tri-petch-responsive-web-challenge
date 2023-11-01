@@ -24,7 +24,7 @@
           </h2>
         </div>
         <p
-          class="text-[15px] leading-[17.58px] sm:text-[18px] sm:leading-[28px] xl:text-[20px]"
+          class="text-[15px] leading-[17.58px] sm:text-[18px] sm:leading-[28px] xl:text-[20px] text-left"
           :class="{ 'text-white': darkMode }"
         >
           <slot />

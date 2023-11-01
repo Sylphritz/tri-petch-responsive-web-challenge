@@ -10,17 +10,25 @@
   }
 }
 
+.carousel__slide {
+  align-items: normal !important;
+}
+
 // Bullet Pagination
-.flicking-pagination {
+.carousel__pagination {
   @apply absolute bottom-[30px] w-full flex flex-row justify-center gap-[12px] z-10;
 
-  .flicking-pagination-bullet {
+  .carousel__pagination-button {
     width: 10px;
     height: 10px;
     background-color: #D8D8D8;
     border-radius: 999999px;
 
-    &.flicking-pagination-bullet-active {
+    &::after {
+      content: none;
+    }
+
+    &.carousel__pagination-button--active {
       background-color: #603EBE;
     }
   }
